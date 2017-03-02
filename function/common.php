@@ -12,9 +12,25 @@ function time_format($sorce)
 // красит ячейку таблицы, в зависимости от результата
 function color($value, $backup = 0)
 {
-    if ($value == $backup) $color = 'bgcolor="grean"';
-    else $color = 'bgcolor="red"';
-    return $color;
+    if ($backup == 1) {
+        if ($value == $backup) {
+            $color = 'bgcolor="grean"';
+        } else {
+            if ($value == 3) {
+                $color = 'bgcolor="yellow"';
+            } else {
+                $color = 'bgcolor="red"';
+            }
+        }
+        return $color;
+    } else {
+        if ($value == $backup) {
+            $color = 'bgcolor="grean"';
+        } else {
+            $color = 'bgcolor="red"';
+        }
+        return $color;
+    }
 }
 
 // устанавливает куку на срок до 2038 года

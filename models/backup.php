@@ -68,10 +68,20 @@ function Backup_getALL()
             // анализируем бэкаплог, и в случае "успеха выполнения" дописываем к имени файла 1, иначе - 0
             // сохраняем бэкаплог
             if (strpos($mail_read[2], 'Завдання виконано успішно') !== false) {
-                $mail_name = $mail_read[0] . '_' . '1';
-                $file = $dir . '/' . $mail_name;
-                backup_savefile($file, $mail_read[2], $mail_read[3]);
-                backup_del_mail($mail_stream, $i);
+                // проверка на 'Summary of validation errors'
+                if (strpos($mail_read[2], 'Summary of validation errors') !== false) {
+                    $mail_name = $mail_read[0] . '_' . '3';
+                    $mail_read[3] = 'Summary of validation errors';
+                    $file = $dir . '/' . $mail_name;
+                    backup_savefile($file, $mail_read[2], $mail_read[3]);
+                    backup_del_mail($mail_stream, $i);
+                } else {
+                    // успішно
+                    $mail_name = $mail_read[0] . '_' . '1';
+                    $file = $dir . '/' . $mail_name;
+                    backup_savefile($file, $mail_read[2], $mail_read[3]);
+                    backup_del_mail($mail_stream, $i);
+                }
             } else {
                 $mail_name = $mail_read[0] . '_' . '0';
                 $file = $dir . '/' . $mail_name;
