@@ -87,6 +87,7 @@ function backup_diffdate($date)
 // пишет данные выполнения задания крона
 function backup_save_log($result)
 {
+    if (CREATE_LOG == 0) return;
     $save_log = fopen(ROOT_DIR . '/cron/backup.log', 'a');
     $log = time_format(time()) . ' ' . $result . CRLF;
     fwrite($save_log, $log);
@@ -96,6 +97,7 @@ function backup_save_log($result)
 // удаляет письмо
 function backup_del_mail($mail_stream, $i)
 {
+    if (DEL_MAIL == 0) return;
     fwrite($mail_stream, 'DELE ' . $i . CRLF);
 }
 

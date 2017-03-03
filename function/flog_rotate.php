@@ -24,6 +24,7 @@ function get_log($dbid = '')
 // пишет данные выполнения задания крона
 function save_log($result)
 {
+    if (CREATE_LOG == 0) return;
     $save_log = fopen(ROOT_DIR . '/cron/log_rotate.log', 'a');
     $log = time_format(time()) . ' ' . $result . ' видалений' . CRLF;
     fwrite($save_log, $log);
