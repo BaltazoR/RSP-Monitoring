@@ -105,7 +105,7 @@ function backup_del_mail($mail_stream, $i)
 function backup_read_log($file)
 {
     $log = fopen($file, 'r');
-    $view = fread($log, filesize($file));
+    $view = @fread($log, filesize($file));
     fclose($log);
     return $view;
 }
