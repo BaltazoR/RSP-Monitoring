@@ -81,7 +81,7 @@ function backup_diffdate($date)
 {
     $date = new DateTime(time_format($date));
     $now = new DateTime();
-    return $diff = $date->diff($now)->format("%d");
+    return $diff = $date->diff($now)->format("%a");
 }
 
 // пишет данные выполнения задания крона
